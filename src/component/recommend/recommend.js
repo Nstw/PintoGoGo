@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
   Container,
-  Row,
-  Col,
   Card,
   CardBody,
   CardGroup,
@@ -15,9 +13,9 @@ import "../recommend/style-recommend.css";
 export default class Recommend extends Component {
   render() {
     return (
-      <Container fluid className="recommend__block">
+      <Container className="recommend__block">
         <h3 className="headtext">Recommended Menu</h3>
-        <CardGroup className="cardgroup">
+        <CardGroup>
           <Card className="card">
             <CardImg src="img/carousel_1.jpg" className="card__img" />
             <CardBody>

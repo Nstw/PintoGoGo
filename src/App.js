@@ -9,7 +9,9 @@ import Carousel from "./component/carousel/carousel";
 import Choice from "./component/choice/choice";
 import Recommend from "./component/recommend/recommend";
 
-const Home = () => <h1>Home</h1>;
+const Home = () => {
+  return [<Navbar />, <Carousel />, <Recommend />, <Choice />];
+};
 
 {
   /*-------------Add path of page---------------*/
@@ -18,10 +20,6 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <Carousel />
-        <Recommend />
-        {/* <Choice /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/demomenu" component={DemoMenu} />
