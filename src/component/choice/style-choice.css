@@ -1,7 +1,7 @@
 .choice__block {
-  height: 280px;
   padding-top: 30px;
   background-color: #f3ece7;
+  position: relative;
 }
 
 .button {
@@ -12,8 +12,12 @@
 }
 
 .cardgroup {
-  margin-left: 70px;
-  margin-right: 70px;
+  min-width: 768px;
+  flex-direction: row;
+}
+
+.card {
+  margin: auto;
 }
 
 .card__img {
