@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+
 .recommend__block {
   position: relative;
   overflow: overlay;
+  font-family: "Quicksand", sans-serif;
 }
 
 .headtext {

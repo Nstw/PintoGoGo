@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+
 .navbar {
-  background-color: #f9f8f8;
-  opacity: 0.3;
+  background-color: rgba(249, 248, 248, 0.2);
+  font-weight: bold;
+  font-family: "Quicksand", sans-serif;
 }
 
 .navbar__link {
-  color: violet;
+  color: white;
+  font-weight: bold;
+  font-family: "Quicksand", sans-serif;
 }
 
 .navbar__link:hover {
@@ -12,6 +17,7 @@
 }
 
 .navbar__item:hover {
-  color: blueviolet;
+  color: rgb(174, 102, 241);
   background-color: #efeeee;
+  border-radius: 8px;
 }

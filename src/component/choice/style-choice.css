@@ -4,6 +4,7 @@
   position: relative;
   overflow: overlay;
 }
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
 
 .button {
   width: 140px;
@@ -12,11 +13,13 @@
   color: #7b7b7b;
   cursor: pointer;
   background-color: #e4dac2;
+  font-family: "Quicksand", sans-serif;
 }
 
 .cardgroup__choice {
   min-width: 768px;
   flex-direction: row;
+  font-family: "Quicksand", sans-serif;
 }
 
 .card__choice {
