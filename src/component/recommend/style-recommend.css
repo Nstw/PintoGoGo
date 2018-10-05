@@ -1,21 +1,23 @@
 .recommend__block {
   position: relative;
+  overflow: overlay;
 }
 
 .headtext {
   padding: 20px;
 }
 
-.card {
-  background: transparent;
-  border: 0px;
-}
-
-.cardgroup {
+.cardgroup__recommend {
   min-width: 768px;
   flex-direction: row;
 }
 
-.card__img {
+.card__recommend {
+  background: transparent;
+  border: 0px;
+}
+
+.cardimg__recommend {
   border-radius: 8px;
+  width: 14rem;
 }
