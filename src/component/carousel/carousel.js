@@ -11,19 +11,13 @@ import "../carousel/style-carousel.css";
 
 const items = [
   {
-    src: "../img/carousel/carousel_2.jpg",
-    altText: "Slide 1",
-    caption: "Slide 1"
+    src: "../img/carousel/carousel_1.png"
   },
   {
-    src: "../img/carousel/carousel_5.jpg",
-    altText: "Slide 2",
-    caption: "Slide 2"
+    src: "../img/carousel/carousel_2.png"
   },
   {
-    src: "../img/carousel/carousel_4.jpg",
-    altText: "Slide 3",
-    caption: "Slide 3"
+    src: "../img/carousel/carousel_3.png"
   }
 ];
 
@@ -80,17 +74,13 @@ export default class CarouselFood extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} />
-          <CarouselCaption
-            captionText={item.caption}
-            captionHeader={item.caption}
-          />
+          <img src={item.src} />
         </CarouselItem>
       );
     });
 
     return (
-      <Container className="carousel__block" fluid>
+      <section className="carousel__block" fluid>
         <Carousel
           activeIndex={activeIndex}
           next={this.next}
@@ -113,7 +103,7 @@ export default class CarouselFood extends Component {
             onClickHandler={this.next}
           />
         </Carousel>
-      </Container>
+      </section>
     );
   }
 }

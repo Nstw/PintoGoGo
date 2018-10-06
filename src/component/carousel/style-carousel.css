@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
 
 .carousel__block {
-  height: 460px;
+  height: 500px;
   position: relative;
-  background-color: black;
-  overflow: hidden;
+  background-color: transparent;
+  /* overflow: hidden; */
   font-family: "Quicksand", sans-serif;
 }
