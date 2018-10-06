@@ -4,23 +4,26 @@
   position: relative;
   overflow: overlay;
   font-family: "Quicksand", sans-serif;
+  margin-bottom: 30px;
 }
 
 .headtext {
-  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 30px;
 }
 
 .cardgroup__recommend {
-  min-width: 768px;
+  min-width: 1024px;
   flex-direction: row;
 }
 
 .card__recommend {
-  background: transparent;
   border: 0px;
+  background: transparent;
+  align-items: center;
 }
 
 .cardimg__recommend {
-  border-radius: 8px;
   width: 14rem;
+  border-radius: 8px;
 }

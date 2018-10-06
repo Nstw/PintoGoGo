@@ -80,8 +80,9 @@ export default class CarouselFood extends Component {
     });
 
     return (
-      <section className="carousel__block" fluid>
+      <section fluid>
         <Carousel
+          className="carousel__block"
           activeIndex={activeIndex}
           next={this.next}
           previous={this.previous}
