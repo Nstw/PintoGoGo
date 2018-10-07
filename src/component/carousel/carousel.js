@@ -11,10 +11,10 @@ import "../carousel/style-carousel.css";
 
 const items = [
   {
-    src: "../img/carousel/carousel_1.png"
+    src: "../img/carousel/carousel_2.png"
   },
   {
-    src: "../img/carousel/carousel_2.png"
+    src: "../img/carousel/carousel_1.png"
   },
   {
     src: "../img/carousel/carousel_3.png"

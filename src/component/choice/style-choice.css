@@ -13,8 +13,11 @@
   height: 46px;
   border: none;
   color: #7b7b7b;
+  font-size: 20px;
+  font-weight: bold;
   background-color: #e4dac2;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .cardgroup__choice {
