@@ -47,7 +47,7 @@ export default class Navigationbar extends Component {
               <NavItem className="navbar__item">
                 <NavLink href="/" className="navbar__link">
                   <img
-                    src="../img/navbar/icon-cart.png"
+                    src="../img/navbar/icon-cart2.png"
                     className="navbar__icon"
                   />
                 </NavLink>
