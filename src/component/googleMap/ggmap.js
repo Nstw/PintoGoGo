@@ -13,6 +13,7 @@ export default class Map extends Component {
     window.initMarker = this.initMarker.bind(this);
     window.pinMarker = this.pinMarker.bind(this);
     window.onChangeAutoComp = false;
+    window.getDistance = this.getDistance.bind(this);
 
     loadJS(
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBKOfI6E4o_jRc1K8qBb63RsUKwZAavGSs&libraries=places&callback=initMap"
@@ -65,7 +66,7 @@ export default class Map extends Component {
       window.lng = window.autocomplete.getPlace().geometry.location.lng();
     }
     window.pinMarker();
-    console.log("pinned marker");
+    // console.log("pinned marker");
   }
 
   pinMarker() {
@@ -100,7 +101,7 @@ export default class Map extends Component {
       ) {
         if (status === window.google.maps.GeocoderStatus.OK) {
           if (results[1]) {
-            console.log("place id: ", results[1].place_id);
+            // console.log("place id: ", results[1].place_id);
             window.placeid = results[1].place_id;
           } else {
             window.alert("No results found");
@@ -109,24 +110,33 @@ export default class Map extends Component {
           window.alert("Geocoder failed due to: " + status);
         }
       });
-
-      // window.infowindow.open(window.myGMap, window.marker);
-      // window.infowindow.setContent("<h1>" + window.place.name + "</h1>");
     });
+  }
 
-    // window.service = new window.google.maps.places.PlacesService(window.myGMap);
-    // window.service.getDetails(
-    //   {
-    //     placeId: window.placeid
-    //   },
-    //   function(place, status) {
-    //     window.marker.addListener("click", function() {
-    //       window.infowindow.open(window.myGMap, window.marker);
-    //       window.infowindow.setContent("<h1>" + window.place.name + "</h1>");
-    //       console.log(window.marker.getPosition().lat());
-    //     });
-    //   }
-    // );
+  getDistance() {
+    window.origin = { lat: 13.845955, lng: 100.568674 };
+    window.dest = { lat: window.lat, lng: window.lng };
+
+    window.service = new window.google.maps.DistanceMatrixService();
+    window.service.getDistanceMatrix(
+      {
+        origins: [window.origin],
+        destinations: [window.dest],
+        travelMode: "DRIVING"
+      },
+      function(response, status) {
+        if (status !== "OK") {
+          alert("Error was: " + status);
+        } else {
+          window.destAddr = response.destinationAddresses;
+          window.distance = response.rows[0].elements[0].distance;
+          window.duration = response.rows[0].elements[0].duration;
+          // console.log(window.destAddr);
+          // console.log(window.distance);
+          // console.log(window.duration);
+        }
+      }
+    );
   }
 
   render() {
@@ -139,6 +149,9 @@ export default class Map extends Component {
         />
 
         <div ref={this.divMap} style={{ height: "500px", width: "500px" }} />
+        <button className="btn btn-primary" onClick={this.getDistance}>
+          submit
+        </button>
       </React.Fragment>
     );
   }
