@@ -9,11 +9,9 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    window.lat = 13.736717;
+    window.lng = 100.523186;
     window.initMap = this.initMap.bind(this);
-    window.initMarker = this.initMarker.bind(this);
-    window.pinMarker = this.pinMarker.bind(this);
-    window.onChangeAutoComp = false;
-    window.getDistance = this.getDistance.bind(this);
 
     loadJS(
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBKOfI6E4o_jRc1K8qBb63RsUKwZAavGSs&libraries=places&callback=initMap"
@@ -21,7 +19,7 @@ export default class Map extends Component {
   }
 
   initMap(position) {
-    console.log(this.divMap.current);
+    // console.log(this.divMap.current);
 
     // CREATE MAP
     window.myGMap = new window.google.maps.Map(this.divMap.current, {
@@ -29,7 +27,7 @@ export default class Map extends Component {
       zoom: 13
     });
 
-    console.log(window.myGMap);
+    // console.log(window.myGMap);
 
     // CREATE AUTO-COMPLETE
     window.input = this.divSearchBox.current;
@@ -38,6 +36,19 @@ export default class Map extends Component {
     );
     window.autocomplete.bindTo("bounds", window.myGMap);
 
+    // CREATE MARKER
+    window.marker = new window.google.maps.Marker({
+      position: new window.google.maps.LatLng(window.lat, window.lng),
+      map: window.myGMap,
+      label: {
+        text: "pick up here",
+        color: "white",
+        fontSize: "9px"
+      },
+      draggable: true
+    });
+
+    // WHEN PLACE CHANGED
     window.autocomplete.addListener("place_changed", function() {
       window.onChangeAutoComp = true;
       var place = window.autocomplete.getPlace();
@@ -54,62 +65,18 @@ export default class Map extends Component {
         window.myGMap.setCenter(place.geometry.location);
         window.myGMap.setZoom(17);
       }
-    });
-  }
-
-  initMarker() {
-    if (!window.onChangeAutoComp) {
-      window.lat = 13.736717;
-      window.lng = 100.523186;
-    } else {
+      // console.log("place change");
       window.lat = window.autocomplete.getPlace().geometry.location.lat();
       window.lng = window.autocomplete.getPlace().geometry.location.lng();
-    }
-    window.pinMarker();
-    // console.log("pinned marker");
-  }
 
-  pinMarker() {
-    window.infowindow = new window.google.maps.InfoWindow();
-
-    // CREATE MARKER
-    window.marker = new window.google.maps.Marker({
-      position: new window.google.maps.LatLng(window.lat, window.lng),
-      map: window.myGMap,
-      label: {
-        text: "pick up here",
-        color: "white",
-        fontSize: "9px"
-      },
-      draggable: true
+      window.latlng = new window.google.maps.LatLng(window.lat, window.lng);
+      window.marker.setPosition(window.latlng);
     });
 
-    // WHEN CLICK MARKER
-    window.marker.addListener("click", function() {
-      // GET PLACE NAME FROM MARKER
-      window.geocoder = new window.google.maps.Geocoder();
+    // WHEN DRAGEND MARKER
+    window.marker.addListener("dragend", function() {
       window.lat = window.marker.getPosition().lat();
       window.lng = window.marker.getPosition().lng();
-      window.latlng = {
-        lat: parseFloat(window.lat),
-        lng: parseFloat(window.lng)
-      };
-
-      window.geocoder.geocode({ location: window.latlng }, function(
-        results,
-        status
-      ) {
-        if (status === window.google.maps.GeocoderStatus.OK) {
-          if (results[1]) {
-            // console.log("place id: ", results[1].place_id);
-            window.placeid = results[1].place_id;
-          } else {
-            window.alert("No results found");
-          }
-        } else {
-          window.alert("Geocoder failed due to: " + status);
-        }
-      });
     });
   }
 
@@ -131,6 +98,7 @@ export default class Map extends Component {
           window.destAddr = response.destinationAddresses;
           window.distance = response.rows[0].elements[0].distance;
           window.duration = response.rows[0].elements[0].duration;
+
           // console.log(window.destAddr);
           // console.log(window.distance);
           // console.log(window.duration);
@@ -144,10 +112,8 @@ export default class Map extends Component {
       <React.Fragment>
         <input
           ref={this.divSearchBox}
-          style={{ height: "50px", width: "80px" }}
-          onBlur={this.initMarker}
+          style={{ height: "50px", width: "100px" }}
         />
-
         <div ref={this.divMap} style={{ height: "500px", width: "500px" }} />
         <button className="btn btn-primary" onClick={this.getDistance}>
           submit
